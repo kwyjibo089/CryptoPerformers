@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CryptoPerformers.Services;
 using Newtonsoft.Json;
+using SQLite;
 
 namespace CryptoPerformers.Models
 {
-    // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
-    //
-    //    using CryptoFeed;
-    //
-    //    var data = CryptoData.FromJson(jsonString);
-
     public class CryptoData
     {
+        [PrimaryKey]
         [JsonProperty("id")] public string Id { get; set; }
 
         [JsonProperty("name")] public string Name { get; set; }
@@ -47,7 +43,7 @@ namespace CryptoPerformers.Models
     {
         public static string ToJson(this List<CryptoData> self)
         {
-            return JsonConvert.SerializeObject(self, Converter<,>.Settings);
+            return JsonConvert.SerializeObject(self, Converter.Settings);
         }
     }
 }

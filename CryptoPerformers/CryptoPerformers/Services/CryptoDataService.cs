@@ -9,18 +9,17 @@ namespace CryptoPerformers.Services
     {
         public string ApiUrl { get; set; }
 
-        public List<ICryptoData> GetCryptoData()
+        public List<CryptoData> GetCryptoData()
         {
             var client = new WebClient();
-            client.UseDefaultCredentials = true;
             var data = client.DownloadString(ApiUrl);
 
             return FromJson(data);
         }
 
-        private static List<ICryptoData> FromJson(string json)
+        private static List<CryptoData> FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<List<ICryptoData>>(json, Converter.Settings);
+            return JsonConvert.DeserializeObject<List<CryptoData>>(json, Converter.Settings);
         }
     }
 
