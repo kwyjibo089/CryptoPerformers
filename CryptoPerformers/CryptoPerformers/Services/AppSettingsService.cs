@@ -7,6 +7,7 @@ namespace CryptoPerformers
     {
         private readonly ISettings _settings = CrossSettings.Current;
         private readonly string apiUrl = "https://api.coinmarketcap.com/v1/ticker/?limit=100";
+        private readonly string iconPath = "https://files.coinmarketcap.com/static/img/coins/32x32/{0}.png";
         private readonly string dbPath = "CryptoPerformersSQLite.db3";
         private readonly bool isFirstStart = true;
 
@@ -14,6 +15,12 @@ namespace CryptoPerformers
         {
             get => _settings.GetValueOrDefault("ApiUrl", apiUrl);
             set => _settings.AddOrUpdateValue("ApiUrl", value);
+        }
+
+        public string IconPath
+        {
+            get => _settings.GetValueOrDefault("iconPath", iconPath);
+            set => _settings.AddOrUpdateValue("iconPath", value);
         }
 
         public string DbPath

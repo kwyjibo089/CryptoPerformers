@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using CryptoPerformers.Models;
+using Xamarin.Forms;
 
 namespace CryptoPerformers.Views
 {
@@ -29,29 +30,24 @@ namespace CryptoPerformers.Views
                 Margin = new Thickness(20),
                 ItemTemplate = new DataTemplate(() =>
                 {
-                    var label = new Label
-                    {
-                        VerticalTextAlignment = TextAlignment.Center,
-                        HorizontalOptions = LayoutOptions.StartAndExpand
-                    };
-                    label.SetBinding(Label.TextProperty, "Name");
+                    var grid = new Grid();
 
-                    var tick = new Image
-                    {
-                        //Source = ImageSource.FromFile("check.png"),
-                        HorizontalOptions = LayoutOptions.End
-                    };
-                    tick.SetBinding(VisualElement.IsVisibleProperty, "Done");
+                    grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                    grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
-                    var stackLayout = new StackLayout
-                    {
-                        Margin = new Thickness(20, 0, 0, 0),
-                        Orientation = StackOrientation.Horizontal,
-                        HorizontalOptions = LayoutOptions.FillAndExpand,
-                        Children = { label, tick }
-                    };
+                    var topLeft = new Label { Text = "Top Left" };
+                    var topRight = new Label { Text = "Top Right" };
+                    var bottomLeft = new Label { Text = "Bottom Left" };
+                    var bottomRight = new Label { Text = "Bottom Right" };
 
-                    return new ViewCell { View = stackLayout };
+                    grid.Children.Add(topLeft, 0, 0);
+                    grid.Children.Add(topRight, 0, 1);
+                    grid.Children.Add(bottomLeft, 1, 0);
+                    grid.Children.Add(bottomRight, 1, 1);
+
+                    return new ViewCell { View = grid };
                 })
             };
             listView.ItemSelected += async (sender, e) =>
@@ -61,9 +57,9 @@ namespace CryptoPerformers.Views
 
                 if (e.SelectedItem != null)
                 {
-                    await Navigation.PushAsync(new CryptoItemPageCS
+                    await Navigation.PushAsync(new CryptoDetailPageCS
                     {
-                        BindingContext = e.SelectedItem as CryptoItemPage
+                        BindingContext = e.SelectedItem as CryptoData
                     });
                 }
             };

@@ -17,9 +17,28 @@
                 <ViewCell>
                     <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                        <!--<Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding Done}" />-->
+                        <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding Done}" />
                         
                     </StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Image Source="{Binding ImgSrc}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" />-->
+                        <Label Text="icon" Grid.Row="0" Grid.Column="0" />
+                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1" />
+                        <Label Text="{Binding PercentChange1H}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="2" />
+                        <Label Text="" Grid.Row="1" Grid.Column="0" />
+                        <Label Text="" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="1" />
+                        <Label Text="{Binding PriceUsd}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="2" />
+                    </Grid>
+
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
